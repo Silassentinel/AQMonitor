@@ -1,2 +1,6 @@
-# TDD_Typescript
-This Repo serves as a base template for typescript projects in TDD
+# AirQuality Monitor
+
+This is the HOW TO guide for the AirQuality Monitor.
+
+TODO:
+
