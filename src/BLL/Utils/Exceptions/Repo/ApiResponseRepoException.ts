@@ -3,7 +3,7 @@ import BaseException from '../BaseException';
 /**
  * CATEGORY-REPO-EXCEPTION
  */
-export default class CategoryRepoException extends BaseException {
+export default class ApiResponseRepoException extends BaseException {
   /**
    * Constructor
    * @param {string} message - The message for the exception.
@@ -16,7 +16,7 @@ export default class CategoryRepoException extends BaseException {
     data?: unknown | undefined
   ) {
     super(name, message, error, data);
-    this.name = 'CategoryRepoException';
+    this.name = 'ApiResponseRepoException';
     this.message = message;
     BLLLogger.ErrorAsync(this.name, `${this.message}, ${error}, ${data}`);
   }

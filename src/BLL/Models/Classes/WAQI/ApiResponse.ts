@@ -1,4 +1,5 @@
 // imports
+import ApiResponseException from '../../../Utils/Exceptions/Model/ApiResponseException';
 import IApiResponse from '../../Interfaces/WAQI/IApiResponse';
 import IWeatherData from '../../Interfaces/WAQI/IWeatherData';
 /**
@@ -17,6 +18,22 @@ export default class ApiResponse implements IApiResponse {
   // #endregion
   // #region Ctor
   constructor(status: string, data: IWeatherData) {
+    if (status === undefined || status === null) {
+      throw new ApiResponseException(
+        'WAQI - API Response Error',
+        'status is required',
+        new Error('status is required'),
+        status
+      );
+    }
+    if (data === undefined || data === null) {
+      throw new ApiResponseException(
+        'WAQI - API Response Error',
+        'data is required',
+        new Error('data is required'),
+        data
+      );
+    }
     this.status = status;
     this.data = data;
   }

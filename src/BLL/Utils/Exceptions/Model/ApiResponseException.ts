@@ -3,7 +3,7 @@ import BLLLogger from '../../Tools/BLLLogger';
 /**
  * IWAQIApiResponse Exception
  */
-export default class IWAQIApiResponseException extends BaseException {
+export default class ApiResponseException extends BaseException {
   /**
    * Ctor
    * @param {string} name - Exception name
@@ -18,7 +18,7 @@ export default class IWAQIApiResponseException extends BaseException {
     data?: unknown | undefined
   ) {
     super(name, message, error, data);
-    this.name = 'IWAQIApiResponseException';
+    this.name = 'ApiResponseException';
     this.message = message;
     BLLLogger.ErrorAsync(this.name, `${this.message}, ${error}, ${data}`);
   }

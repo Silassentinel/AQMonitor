@@ -4,7 +4,7 @@
 
 import IApiResponse from '../Models/Interfaces/WAQI/IApiResponse';
 
-export default interface IWAQIApiResponseRepo {
+export default interface IApiResponseRepo {
   /**
    * The response from the IWAQI API
    * @type {IWAQIApiResponse}

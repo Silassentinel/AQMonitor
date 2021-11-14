@@ -9,7 +9,12 @@ export default class BaseException extends Error {
    * @param {error} originalError - The original error
    * @param {object} data - The data to add to the error}
    */
-  constructor(name: string, message: string, error: Error, data?: unknown) {
+  constructor(
+    name: string,
+    message: string,
+    error: Error,
+    data?: unknown
+  ) {
     super(
       `${
         name + message + +`${data !== null ? `\n${JSON.stringify(data)}` : ''}`

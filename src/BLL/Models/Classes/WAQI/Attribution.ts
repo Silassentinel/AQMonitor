@@ -1,4 +1,5 @@
 // Imports
+import AttributionException from '../../../Utils/Exceptions/Model/AttributionException';
 import IAttribution from '../../Interfaces/WAQI/IAttribution';
 /**
  * Attribution class
@@ -10,6 +11,22 @@ export default class Attribution implements IAttribution {
   // #endregion
   // #region Ctor
   constructor(url: string, name: string) {
+    if (url === undefined || url === '') {
+      throw new AttributionException(
+        'Attribution Exception',
+        'The attribution url is undefined or empty',
+        new Error(),
+        url
+      );
+    }
+    if (name === undefined) {
+      throw new AttributionException(
+        'Attribution Exception',
+        'The attribution name is undefined or empty',
+        new Error(),
+        name
+      );
+    }
     this.url = url;
     this.name = name;
   }
