@@ -4,8 +4,8 @@
   "description": "This tool will check AirQuality around you and prompt about it",
   "main": "start.ts",
   "scripts": {
-    "clean code": "npx prettier --write ./src/",
-    "clean tests": "npx prettier --write ./test/",
+    "cc": "npx prettier --write ./src/",
+    "ct": "npx prettier --write ./test/",
     "start": "ts-node start.ts",
     "build": "tsc -p .",
     "dev": "nodemon -r tsconfig-paths/register src/",
@@ -19,12 +19,17 @@
   "author": "silassentinel",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "tslib": "^2.3.1"
+    "helmet": "^4.6.0",
+    "tslib": "^2.3.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.22",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.11.7",
