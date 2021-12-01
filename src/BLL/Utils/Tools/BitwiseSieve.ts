@@ -39,9 +39,9 @@ export default class BitwiseSieve {
     this._sieve[0] = 0;
     this._sieve[1] = 0;
     for (let i = 2; i <= this._max; i++) {
-        if(i / 1 === 0 || i / i === 1) {
-            this._primes.push(i);
-        }
+      if (i / 1 === 0 || i / i === 1) {
+        this._primes.push(i);
+      }
     }
   }
 

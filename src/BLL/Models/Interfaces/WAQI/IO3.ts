@@ -2,7 +2,7 @@
  * Interface for the NO2 data
  */
 export default interface IO3 {
-  v: number;
+  value: number;
   avg: number;
   day: string;
   max: number;

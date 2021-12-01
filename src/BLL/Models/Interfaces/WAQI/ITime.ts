@@ -3,7 +3,7 @@
  */
 export default interface ITime {
   s: string;
-  tz: string;
-  v: number;
+  timeZone: string;
+  value: number;
   iso: string;
 }
