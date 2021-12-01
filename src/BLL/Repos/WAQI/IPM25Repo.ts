@@ -32,6 +32,6 @@ export default interface IPM25Repo {
   /**
    * Checks if IPm25 exists
    */
-  exists(id: number): Promise<boolean>;
+  exists(id: string): Promise<boolean>;
   //#endregion
 }

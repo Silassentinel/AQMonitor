@@ -14,7 +14,7 @@ export default interface ICityRepo {
    * Get city by id
    * @param id City id
    */
-  getById(id: number): Promise<ICity>;
+  getById(id: string): Promise<ICity>;
   /**
    * Get city by name
    * @param name City name
@@ -44,12 +44,12 @@ export default interface ICityRepo {
    * Delete city
    * @param id City id
    */
-  delete(id: number): Promise<void>;
+  delete(id: string): Promise<void>;
   /**
    * Checks if city exists by Id.
    * @param id City id
    */
-  exists(id: number): Promise<boolean>;
+  exists(id: string): Promise<boolean>;
   /**
    * Checks if city exists by Name.
    * @param name City name

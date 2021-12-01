@@ -32,6 +32,6 @@ export default interface IPM10Repo {
   /**
    * Checks if PM10 exists
    */
-  exists(id: number): Promise<boolean>;
+  exists(id: string): Promise<boolean>;
   //#endregion
 }

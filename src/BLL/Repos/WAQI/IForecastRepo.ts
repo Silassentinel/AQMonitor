@@ -10,7 +10,7 @@ export default interface IForecastRepo {
    * Gets the forecast by the given id.
    * @param id The id of the forecast.
    */
-  getForecastById(id: number): Promise<IForecast>;
+  getById(id: string): Promise<IForecast>;
   /**
    * Get All
    */
@@ -19,16 +19,21 @@ export default interface IForecastRepo {
    * Adds a new forecast.
    * @param forecast The forecast to add.
    */
-  addForecast(forecast: IForecast): Promise<void>;
+  add(forecast: IForecast): Promise<void>;
   /**
    * Updates the forecast with the given id.
    * @param forecast {IForecast} The forecast to update.
    */
-  updateForecast(forecast: IForecast): Promise<void>;
+  update(forecast: IForecast): Promise<void>;
   /**
    * Deletes the forecast with the given id.
    * @param id The id of the forecast.
    */
-  deleteForecast(id: number): Promise<void>;
+  delete(id: string): Promise<void>;
+  /**
+   * Checks if a forecast with the given id exists.
+   * @param id The id of the forecast.
+   */
+  exists(id: string): Promise<boolean>;
   //#endregion
 }

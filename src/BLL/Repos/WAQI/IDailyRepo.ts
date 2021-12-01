@@ -10,7 +10,7 @@ export default interface IDailyRepo {
    * Gets the Daily obj by ID.
    * @param id The ID of the Daily obj.
    */
-  getById(id: number): Promise<IDaily>;
+  getById(id: string): Promise<IDaily>;
   /**
    * Get All Daily objs.
    */
@@ -29,11 +29,11 @@ export default interface IDailyRepo {
    * Deletes a Daily obj by ID.
    * @param id The ID of the Daily obj to delete.
    */
-  delete(id: number): Promise<void>;
+  delete(id: string): Promise<void>;
   /**
    * Checks if a Daily obj exists.
    * @param id The ID of the Daily obj to check.
    */
-  exists(id: number): Promise<boolean>;
+  exists(id: string): Promise<boolean>;
   //#endregion
 }

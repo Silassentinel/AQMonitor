@@ -14,7 +14,7 @@ export default interface IIaqiRepo {
    * Get By Id.
    * @param id The id of the IAqi to get.
    */
-  getById(id: number): Promise<Iaqi>;
+  getById(id: string): Promise<Iaqi>;
   /**
    * Add a new IAqi.
    * @param IAqi The IAqi to add.
@@ -29,11 +29,11 @@ export default interface IIaqiRepo {
    * Delete an existing IAqi.
    * @param id The id of the IAqi to delete.
    */
-  delete(id: number): Promise<void>;
+  delete(id: string): Promise<void>;
   /**
    * Checks if a IAqi with the given id exists.
    * @param id The id to check.
    */
-  exists(id: number): Promise<boolean>;
+  exists(id: string): Promise<boolean>;
   //#endregion
 }

@@ -12,7 +12,7 @@ export default interface IAttributionRepo {
    * @returns The attribution.
    * @throws Throws an error if the attribution does not exist.
    */
-  getById(id: number): Promise<IAttribution>;
+  getById(id: string): Promise<IAttribution>;
   /**
    * Gets the attribution by name.
    */
@@ -39,11 +39,11 @@ export default interface IAttributionRepo {
    * Deletes an attribution.
    * @param id The id of the attribution to delete.
    */
-  delete(id: number): Promise<void>;
+  delete(id: string): Promise<void>;
   /**
    * Checks if an attribution exists by Id.
    */
-  exists(id: number): Promise<boolean>;
+  exists(id: string): Promise<boolean>;
   /**
    * Checks if an attribution exists by name.
    */
