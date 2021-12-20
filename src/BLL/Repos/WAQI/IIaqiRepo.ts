@@ -1,5 +1,5 @@
 //#region imports
-import Iaqi from '../../Models/Classes/WAQI/Iaqi';
+import IIaqi from '../../Models/Interfaces/WAQI/IIaqi';
 //#endregion
 /**
  * Interface for the IAqiRepo
@@ -9,22 +9,22 @@ export default interface IIaqiRepo {
   /**
    * Get all IAqi.
    */
-  getAll(): Promise<Iaqi[]>;
+  getAll(): Promise<IIaqi[]>;
   /**
    * Get By Id.
    * @param id The id of the IAqi to get.
    */
-  getById(id: string): Promise<Iaqi>;
+  getById(id: string): Promise<IIaqi>;
   /**
    * Add a new IAqi.
    * @param IAqi The IAqi to add.
    */
-  add(IAqi: Iaqi): Promise<void>;
+  add(IAqi: IIaqi): Promise<void>;
   /**
    * Update an existing IAqi.
    * @param IAqi The IAqi to update.
    */
-  update(IAqi: Iaqi): Promise<void>;
+  update(IAqi: IIaqi): Promise<void>;
   /**
    * Delete an existing IAqi.
    * @param id The id of the IAqi to delete.
