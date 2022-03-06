@@ -27,33 +27,44 @@ import IApiResponseRepo from "../BLL/Repos/IApiResponseRepo";
  * Unit of Work
  */
 class UnitOfWork implements IUnitOfWork {
-    private _dbContext: DbContext;
-    private _repositories: { [key: string]: Repository<any> } = {};
-
+    // #region Ctor
     constructor(dbContext: DbContext) {
         this._dbContext = dbContext;
     }
-    ApiResponses: IApiResponseRepo;
-    Attributions: IAttributionRepo;
-    Cities: ICityRepo;
-    Cos: ICORepo;
-    Dailies: IDailyRepo;
-    Debugs: IDebugRepo;
-    Forecasts: IForecastRepo;
-    Hs: IHRepo;
-    Iaqis: IIaqiRepo;
-    NO2s: INO2Repo;
-    O3s: IO3Repo;
-    Ps: IPRepo;
-    PM10s: IPM10Repo;
-    PM25s: IPM25Repo;
-    SO2s: ISO2Repo;
-    ITs: ITRepo;
-    Times: ITimeRepo;
-    Uvis: IUVIRepo;
-    Ws: IWRepo;
-    WeatherDatas: IWeatherDataRepo;
+    // #endregion
+    // #region Props
+    private _dbContext: DbContext;
+    private _repositories: { [key: string]: Repository<any> } = {};
+    ApiResponses!: IApiResponseRepo;
+    Attributions!: IAttributionRepo;
+    Cities!: ICityRepo;
+    Cos!: ICORepo;
+    Dailies!: IDailyRepo;
+    Debugs!: IDebugRepo;
+    Forecasts!: IForecastRepo;
+    Hs!: IHRepo;
+    Iaqis!: IIaqiRepo;
+    NO2s!: INO2Repo;
+    O3s!: IO3Repo;
+    Ps!: IPRepo;
+    PM10s!: IPM10Repo;
+    PM25s!: IPM25Repo;
+    SO2s!: ISO2Repo;
+    ITs!: ITRepo;
+    Times!: ITimeRepo;
+    Uvis!: IUVIRepo;
+    Ws!: IWRepo;
+    WeatherDatas!: IWeatherDataRepo;
+    //private readonly AdoContext _context;
+    // private IDbTransaction _transaction;
+    // #endregion
+    // #region Meths
     Complete(): Promise<void> {
-        throw new Error("Method not implemented.");
+        try {
+            return this._dbContext.Complete();
+        } catch (error) {
+            return Promise.reject(error);
+        }
     }
+    // #endregion
 
