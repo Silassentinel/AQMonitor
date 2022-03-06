@@ -9,6 +9,13 @@ import IDaily from './Models/Interfaces/WAQI/IDaily';
 import ApplicationManagerException from './Utils/Exceptions/ApplicationManagerException';
 import IH from './Models/Interfaces/WAQI/IH';
 import IIaqi from './Models/Interfaces/WAQI/IIaqi';
+import INo2 from './Models/Interfaces/WAQI/INo2';
+import IO3 from './Models/Interfaces/WAQI/IO3';
+import IP from './Models/Interfaces/WAQI/IP';
+import IPm10 from './Models/Interfaces/WAQI/IPm10';
+import IPm25 from './Models/Interfaces/WAQI/IPm25';
+import ISo2 from './Models/Interfaces/WAQI/ISo2';
+import IT from './Models/Interfaces/WAQI/IT';
 
 //#endregion
 /**
@@ -392,64 +399,457 @@ export default class AppManager {
   }
   //#endregion
   //#region Air quality indexes
-    /**
-     * Get all air quality indexes
-     */
-    public async getAllAirQualityIndexes(): Promise<IIaqi[]> {
-        return await this._uow.Iaqis.getAll();
-    }
-    /**
-     * Get Air quality index by id.
-     * @param id {string} The id of the air quality index
-     */
-    public async getAirQualityIndexById(id: string): Promise<IIaqi> {
-        return await this._uow.Iaqis.getById(id);
-    }
-    /**
-     * Add a new air quality index
-     * @param airQualityIndex {IIaqi} The air quality index to add
-     */
-    public async addAirQualityIndex(airQualityIndex: IIaqi): Promise<void> {
-        await this._uow.Iaqis.add(airQualityIndex);
-    }
-    /**
-     * Update a air quality index
-     * @param airQualityIndex {IIaqi} The air quality index to update
-     */
-    public async updateAirQualityIndex(airQualityIndex: IIaqi): Promise<void> {
-        await this._uow.Iaqis.update(airQualityIndex);
-    }
-    /**
-     * Delete a air quality index
-     * @param id {string} The id of the air quality index to delete
-     */
-    public async deleteAirQualityIndex(id: string): Promise<void> {
-        await this._uow.Iaqis.delete(id);
-    }
-    /**
-     * Check if a air quality index exists by id
-     * @param airQualityIndexId {string} The id of the air quality index
-     */
-    public async airQualityIndexExists(airQualityIndexId: string): Promise<boolean> {
-        return await this._uow.Iaqis.exists(airQualityIndexId);
-    }
+  /**
+   * Get all air quality indexes
+   */
+  public async getAllAirQualityIndexes(): Promise<IIaqi[]> {
+    return await this._uow.Iaqis.getAll();
+  }
+  /**
+   * Get Air quality index by id.
+   * @param id {string} The id of the air quality index
+   */
+  public async getAirQualityIndexById(id: string): Promise<IIaqi> {
+    return await this._uow.Iaqis.getById(id);
+  }
+  /**
+   * Add a new air quality index
+   * @param airQualityIndex {IIaqi} The air quality index to add
+   */
+  public async addAirQualityIndex(airQualityIndex: IIaqi): Promise<void> {
+    await this._uow.Iaqis.add(airQualityIndex);
+  }
+  /**
+   * Update a air quality index
+   * @param airQualityIndex {IIaqi} The air quality index to update
+   */
+  public async updateAirQualityIndex(airQualityIndex: IIaqi): Promise<void> {
+    await this._uow.Iaqis.update(airQualityIndex);
+  }
+  /**
+   * Delete a air quality index
+   * @param id {string} The id of the air quality index to delete
+   */
+  public async deleteAirQualityIndex(id: string): Promise<void> {
+    await this._uow.Iaqis.delete(id);
+  }
+  /**
+   * Check if a air quality index exists by id
+   * @param airQualityIndexId {string} The id of the air quality index
+   */
+  public async airQualityIndexExists(
+    airQualityIndexId: string
+  ): Promise<boolean> {
+    return await this._uow.Iaqis.exists(airQualityIndexId);
+  }
   //#endregion
   //#region NO2s
-  
+  /**
+   * Gets all NO2s
+   * @returns {Promise<INo2[]>}
+   */
+  public async getAllNO2s(): Promise<INo2[]> {
+    return await this._uow.NO2s.getAll();
+  }
+
+  /**
+   * Gets NO2 by id
+   * @param id {string} The id of the NO2
+   * @returns {Promise<INo2>}
+   */
+  public async getNO2ById(id: string): Promise<INo2> {
+    return await this._uow.NO2s.getById(id);
+  }
+
+  /**
+   * Gets NO2 by value
+   * @param value {number} The value of the NO2
+   * @returns {Promise<INo2[]>}
+   */
+  public async getNO2ByValue(value: number): Promise<INo2> {
+    return await this._uow.NO2s.getByValue(value);
+  }
+
+  /**
+   * Adds a new NO2
+   * @param no2 {INo2} The NO2 to add
+   * @returns {Promise<void>}
+   */
+  public async addNO2(no2: INo2): Promise<void> {
+    await this._uow.NO2s.add(no2);
+  }
+
+  /**
+   * Updates a NO2
+   * @param no2 {INo2} The NO2 to update
+   * @returns {Promise<void>}
+   */
+  public async updateNO2(no2: INo2): Promise<void> {
+    await this._uow.NO2s.update(no2);
+  }
+
+  /**
+   * Deletes a NO2
+   * @param id {string} The id of the NO2 to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteNO2(id: string): Promise<void> {
+    await this._uow.NO2s.delete(id);
+  }
+
+  /**
+   * Checks if a NO2 exists by id
+   * @param no2Id {string} The id of the NO2
+   * @returns {Promise<boolean>}
+   */
+  public async no2Exists(no2Id: string): Promise<boolean> {
+    return await this._uow.NO2s.exists(no2Id);
+  }
+
+  /**
+   * Checks if a NO2 exists by value
+   */
+  public async no2ExistsByValue(value: number): Promise<boolean> {
+    return await this._uow.NO2s.existsByValue(value);
+  }
   //#endregion
-  //#region Ozones
+  //#region O3s
+  /**
+   * Gets all O3s
+   * @returns {Promise<IO3[]>}
+   */
+  public async getAllO3s(): Promise<IO3[]> {
+    return await this._uow.O3s.getAll();
+  }
+
+  /**
+   * Gets Ozone by id
+   * @param id {string} The id of the Ozone
+   * @returns {Promise<IO3>}
+   */
+  public async getOzoneById(id: string): Promise<IO3> {
+    return await this._uow.O3s.getById(id);
+  }
+
+  /**
+   * Adds a new Ozone
+   * @param ozone {IO3} The Ozone to add
+   * @returns {Promise<void>}
+   */
+  public async addOzone(ozone: IO3): Promise<void> {
+    await this._uow.O3s.add(ozone);
+  }
+
+  /**
+   * Updates a Ozone
+   * @param ozone {IO3} The Ozone to update
+   * @returns {Promise<void>}
+   */
+  public async updateOzone(ozone: IO3): Promise<void> {
+    await this._uow.O3s.update(ozone);
+  }
+
+  /**
+   * Deletes a Ozone
+   * @param id {string} The id of the Ozone to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteOzone(id: string): Promise<void> {
+    await this._uow.O3s.delete(id);
+  }
+
+  /**
+   * Checks if a Ozone exists by id
+   * @param ozoneId {string} The id of the Ozone
+   * @returns {Promise<boolean>}
+   */
+  public async ozoneExists(ozoneId: string): Promise<boolean> {
+    return await this._uow.O3s.Exist(ozoneId);
+  }
   //#endregion
   //#region Phosphorus
+  /**
+   * Gets all Phosphorus
+   * @returns {Promise<IPhosphorus[]>}
+   */
+  public async getAllPhosphorus(): Promise<IP[]> {
+    return await this._uow.Ps.getAll();
+  }
+
+  /**
+   * Gets Phosphorus by id
+   * @param id {string} The id of the Phosphorus
+   * @returns {Promise<IPhosphorus>}
+   */
+  public async getPhosphorusById(id: string): Promise<IP> {
+    return await this._uow.Ps.getById(id);
+  }
+
+  /**
+   * Adds a new Phosphorus
+   * @param phosphorus {IPhosphorus} The Phosphorus to add
+   * @returns {Promise<void>}
+   */
+  public async addPhosphorus(phosphorus: IP): Promise<void> {
+    await this._uow.Ps.add(phosphorus);
+  }
+
+  /**
+   * Updates a Phosphorus
+   * @param phosphorus {IPhosphorus} The Phosphorus to update
+   * @returns {Promise<void>}
+   */
+  public async updatePhosphorus(phosphorus: IP): Promise<void> {
+    await this._uow.Ps.update(phosphorus);
+  }
+
+  /**
+   * Deletes a Phosphorus
+   * @param id {string} The id of the Phosphorus to delete
+   * @returns {Promise<void>}
+   */
+  public async deletePhosphorus(id: string): Promise<void> {
+    await this._uow.Ps.deleteById(id);
+  }
+
+  /**
+   * Checks if a Phosphorus exists by id
+   * @param phosphorusId {string} The id of the Phosphorus
+   * @returns {Promise<boolean>}
+   */
+  public async phosphorusExists(phosphorusId: string): Promise<boolean> {
+    return await this._uow.Ps.exists(phosphorusId);
+  }
+
+  /**
+   * Gets Phosphorus by value
+   * @param value {number} The value of the Phosphorus
+   * @returns {Promise<IPhosphorus>}
+   */
+  public async getPhosphorusByValue(value: number): Promise<IP> {
+    return await this._uow.Ps.getByValue(value);
+  }
   //#endregion
   //#region PM10s
+  /**
+   * Gets all PM10s
+   * @returns {Promise<IPM10[]>}
+   */
+  public async getAllPM10s(): Promise<IPm10[]> {
+    return await this._uow.PM10s.getAll();
+  }
+
+  /**
+   * Gets PM10 by id
+   * @param id {string} The id of the PM10
+   * @returns {Promise<IPM10>}
+   */
+  public async getPM10ById(id: string): Promise<IPm10> {
+    return await this._uow.PM10s.getById(id);
+  }
+
+  /**
+   * Adds a new PM10
+   * @param pm10 {IPM10} The PM10 to add
+   * @returns {Promise<void>}
+   */
+  public async addPM10(pm10: IPm10): Promise<void> {
+    await this._uow.PM10s.add(pm10);
+  }
+
+  /**
+   * Updates a PM10
+   * @param pm10 {IPM10} The PM10 to update
+   * @returns {Promise<void>}
+   */
+  public async updatePM10(pm10: IPm10): Promise<void> {
+    await this._uow.PM10s.update(pm10);
+  }
+
+  /**
+   * Deletes a PM10
+   * @param id {string} The id of the PM10 to delete
+   * @returns {Promise<void>}
+   */
+  public async deletePM10(id: string): Promise<void> {
+    await this._uow.PM10s.delete(id);
+  }
+
+  /**
+   * Checks if a PM10 exists by id
+   * @param pm10Id {string} The id of the PM10
+   * @returns {Promise<boolean>}
+   */
+  public async pm10Exists(pm10Id: string): Promise<boolean> {
+    return await this._uow.PM10s.exists(pm10Id);
+  }
   //#endregion
   //#region PM25s
+  /**
+   * Gets all PM25s
+   * @returns {Promise<IPM25[]>}
+   * @memberof IRepository
+   */
+  public async getAllPM25s(): Promise<IPm25[]> {
+    return await this._uow.PM25s.getAll();
+  }
+
+  /**
+   * Gets PM25 by id
+   * @param id {string} The id of the PM25
+   * @returns {Promise<IPM25>}
+   */
+  public async getPM25ById(id: string): Promise<IPm25> {
+    return await this._uow.PM25s.getById(id);
+  }
+
+  /**
+   * Adds a new PM25
+   * @param pm25 {IPM25} The PM25 to add
+   * @returns {Promise<void>}
+   */
+  public async addPM25(pm25: IPm25): Promise<void> {
+    return this._uow.PM25s.add(pm25);
+  }
+
+  /**
+   * Updates a PM25
+   * @param pm25 {IPM25} The PM25 to update
+   * @returns {Promise<void>}
+   */
+  public async updatePM25(pm25: IPm25): Promise<void> {
+    return this._uow.PM25s.update(pm25);
+  }
+
+  /**
+   * Deletes a PM25
+   * @param id {string} The id of the PM25 to delete
+   * @returns {Promise<void>}
+   */
+  public async deletePM25(id: string): Promise<void> {
+    return this._uow.PM25s.delete(id);
+  }
+
+  /**
+   * Checks if a PM25 exists by id
+   * @param pm25Id {string} The id of the PM25
+   * @returns {Promise<boolean>}
+   */
+  public async pm25Exists(pm25Id: string): Promise<boolean> {
+    return this._uow.PM25s.exists(pm25Id);
+  }
   //#endregion
   //#region SO2s
+  /**
+   * Gets all SO2s
+   * @returns {Promise<ISO2[]>}
+   */
+  public async getAllSO2s(): Promise<ISo2[]> {
+    return await this._uow.SO2s.getAll();
+  }
+
+  /**
+   * Gets SO2 by id
+   * @param id {string} The id of the SO2
+   * @returns {Promise<ISO2>}
+   */
+  public async getSO2ById(id: string): Promise<ISo2> {
+    return await this._uow.SO2s.getById(id);
+  }
+
+  /**
+   * Adds a new SO2
+   * @param so2 {ISO2} The SO2 to add
+   * @returns {Promise<void>}
+   */
+  public async addSO2(so2: ISo2): Promise<void> {
+    return this._uow.SO2s.add(so2);
+  }
+
+  /**
+   * Updates a SO2
+   * @param so2 {ISO2} The SO2 to update
+   * @returns {Promise<void>}
+   */
+  public async updateSO2(so2: ISo2): Promise<void> {
+    return this._uow.SO2s.update(so2);
+  }
+
+  /**
+   * Deletes a SO2
+   * @param id {string} The id of the SO2 to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteSO2(id: string): Promise<void> {
+    return this._uow.SO2s.delete(id);
+  }
+
+  /**
+   * Checks if a SO2 exists by id
+   * @param so2Id {string} The id of the SO2
+   * @returns {Promise<boolean>}
+   */
+  public async so2Exists(so2Id: string): Promise<boolean> {
+    return this._uow.SO2s.exists(so2Id);
+  }
   //#endregion
   //#region Ts
+  /**
+   * Gets all Ts
+   * @returns {Promise<IT[]>}
+   * @memberof IRepository
+   */
+  public async getAllTs(): Promise<IT[]> {
+    return await this._uow.ITs.getAll();
+  }
+
+  /**
+   * Gets T by id
+   * @param id {string} The id of the T
+   * @returns {Promise<IT>}
+   */
+  public async getTById(id: string): Promise<IT> {
+    return await this._uow.ITs.getById(id);
+  }
+
+  /**
+   * Adds a new T
+   * @param t {IT} The T to add
+   * @returns {Promise<void>}
+   */
+  public async addT(t: IT): Promise<void> {
+    return this._uow.ITs.add(t);
+  }
+
+  /**
+   * Updates a T
+   * @param t {IT} The T to update
+   * @returns {Promise<void>}
+   */
+  public async updateT(t: IT): Promise<void> {
+    return this._uow.ITs.update(t);
+  }
+
+  /**
+   * Deletes a T
+   * @param id {string} The id of the T to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteT(id: string): Promise<void> {
+    return this._uow.ITs.delete(id);
+  }
+
+  /**
+   * Checks if a T exists by id
+   * @param tId {string} The id of the T
+   * @returns {Promise<boolean>}
+   */
+  public async tExists(tId: string): Promise<boolean> {
+    return this._uow.ITs.exists(tId);
+  }
   //#endregion
   //#region Times
+
   //#endregion
   //#region Uvis
   //#endregion

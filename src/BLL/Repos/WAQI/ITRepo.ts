@@ -19,7 +19,7 @@ export default interface ITRepo {
    * Add new IT
    * @param IT {IT} IT to add
    */
-  create(IT: IT): Promise<void>;
+  add(IT: IT): Promise<void>;
   /**
    * Update IT
    * @param IT {IT} IT to update

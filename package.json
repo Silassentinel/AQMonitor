@@ -6,7 +6,7 @@
   "scripts": {
     "cc": "npx prettier --write ./src/",
     "ct": "npx prettier --write ./test/",
-    "start": "ts-node start.ts",
+    "start": "ts-node ./src/start.ts",
     "build": "tsc -p .",
     "dev": "nodemon -r tsconfig-paths/register src/",
     "test": "mocha --check-leaks -r tsconfig-paths/register ts-node/register \"test/**/*.spec.ts\""

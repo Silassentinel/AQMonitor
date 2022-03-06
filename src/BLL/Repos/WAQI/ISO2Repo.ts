@@ -10,7 +10,7 @@ export default interface ISO2Repo {
   /**
    * Gets all
    */
-  getAll(): Promise<ISo2>;
+  getAll(): Promise<ISo2[]>;
   /**
    * Get by Id
    * @param id {string} id
@@ -25,17 +25,17 @@ export default interface ISO2Repo {
    * Add new SO2
    * @param so2 {ISo2} so2
    */
-  add(so2: ISo2): Promise<ISo2>;
+  add(so2: ISo2): Promise<void>;
   /**
    * Update SO2
    * @param so2 {ISo2} so2
    */
-  update(so2: ISo2): Promise<ISo2>;
+  update(so2: ISo2): Promise<void>;
   /**
    * Delete SO2
    * @param id {string} id
    */
-  delete(id: string): Promise<ISo2>;
+  delete(id: string): Promise<void>;
   /**
    * Checks if SO2 exists
    * @param id {string} id
