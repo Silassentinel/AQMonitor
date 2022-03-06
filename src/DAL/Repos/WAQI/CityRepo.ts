@@ -1,10 +1,8 @@
 // #region imports
-// #endregion
-
-import ICity from 'src/BLL/Models/Interfaces/WAQI/ICity';
-import DbContext from 'src/DAL/DbContext/DbContext';
+import ICity from '../../../BLL/Models/Interfaces/WAQI/ICity';
 import ICityRepo from '../../../BLL/Repos/WAQI/ICityRepo';
-
+import DbContext from '../../DbContext/DbContext';
+// #endregion
 /**
  * CityRepo class
  */
