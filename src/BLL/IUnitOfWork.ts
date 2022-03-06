@@ -1,4 +1,5 @@
 //#region Imports
+import IApiResponseRepo from './Repos/IApiResponseRepo';
 import IAttributionRepo from './Repos/WAQI/IAttributionRepo';
 import ICityRepo from './Repos/WAQI/ICityRepo';
 import ICORepo from './Repos/WAQI/ICORepo';
@@ -43,6 +44,7 @@ export default interface IUnitOfWork {
   Uvis: IUVIRepo;
   Ws: IWRepo;
   WeatherDatas: IWeatherDataRepo;
+  ApiResponses: IApiResponseRepo;
   //#endregion
   //#region Methods
   Complete(): Promise<void>;

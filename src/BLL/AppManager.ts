@@ -20,6 +20,7 @@ import ITime from './Models/Interfaces/WAQI/ITime';
 import IUvi from './Models/Interfaces/WAQI/IUvi';
 import IWeatherData from './Models/Interfaces/WAQI/IWeatherData';
 import IW from './Models/Interfaces/WAQI/IW';
+import IApiResponse from './Models/Interfaces/WAQI/IApiResponse';
 
 //#endregion
 /**
@@ -1051,5 +1052,58 @@ export default class AppManager {
     return this._uow.WeatherDatas.exists(weatherDataId);
   }
   //#endregion
+  // #region ApiResponseµ
+  /**
+   * Gets all ApiResponses
+   * @returns {Promise<IApiResponse[]>}
+   * @memberof IRepository
+   */
+  public async getAllApiResponses(): Promise<IApiResponse[]> {
+    return await this._uow.ApiResponses.GetAll();
+  }
+
+  /**
+   * Gets ApiResponse by id
+   * @param id {string} The id of the ApiResponse
+   * @returns {Promise<IApiResponse>}
+   */
+  public async getApiResponseById(id: string): Promise<IApiResponse> {
+    return await this._uow.ApiResponses.GetById(id);
+  }
+
+  /**
+   * Gets ApiResponse by status
+   */
+  public async getApiResponseByStatus(status: string): Promise<IApiResponse[]> {
+    return await this._uow.ApiResponses.GetByStatus(status);
+  }
+
+  /**
+   * Adds a new ApiResponse
+   * @param apiResponse {IApiResponse} The ApiResponse to add
+   * @returns {Promise<void>}
+   */
+  public async addApiResponse(apiResponse: IApiResponse): Promise<void> {
+    return this._uow.ApiResponses.add(apiResponse);
+  }
+
+  /**
+   * Updates a ApiResponse
+   * @param apiResponse {IApiResponse} The ApiResponse to update
+   * @returns {Promise<void>}
+   */
+  public async updateApiResponse(apiResponse: IApiResponse): Promise<void> {
+    return this._uow.ApiResponses.Update(apiResponse);
+  }
+
+  /**
+   * Deletes a ApiResponse
+   * @param id {string} The id of the ApiResponse to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteApiResponse(id: string): Promise<void> {
+    return this._uow.ApiResponses.Delete(id);
+  }
+  // #endregion
   //#endregion
 }

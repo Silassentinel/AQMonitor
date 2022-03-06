@@ -17,7 +17,7 @@ export default interface IApiResponseRepo {
   GetAll(): IApiResponse[];
   GetByStatus(status: string): IApiResponse[];
   GetById(id: string): IApiResponse;
-  Create(apiResponse: IApiResponse): IApiResponse;
-  Update(apiResponse: IApiResponse): IApiResponse;
-  Delete(id: string): IApiResponse;
+  add(apiResponse: IApiResponse): void;
+  Update(apiResponse: IApiResponse): void;
+  Delete(id: string): void;
 }
