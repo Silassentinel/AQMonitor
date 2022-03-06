@@ -1,5 +1,4 @@
 //#region Imports
-import IWeatherData from './Models/Interfaces/WAQI/IWeatherData';
 import IAttributionRepo from './Repos/WAQI/IAttributionRepo';
 import ICityRepo from './Repos/WAQI/ICityRepo';
 import ICORepo from './Repos/WAQI/ICORepo';
@@ -17,6 +16,7 @@ import ISO2Repo from './Repos/WAQI/ISO2Repo';
 import ITimeRepo from './Repos/WAQI/ITimeRepo';
 import ITRepo from './Repos/WAQI/ITRepo';
 import IUVIRepo from './Repos/WAQI/IUVIRepo';
+import IWeatherDataRepo from './Repos/WAQI/IWeatherDataRepo';
 import IWRepo from './Repos/WAQI/IWRepo';
 //#endregion
 /**
@@ -42,7 +42,7 @@ export default interface IUnitOfWork {
   Times: ITimeRepo;
   Uvis: IUVIRepo;
   Ws: IWRepo;
-  WeatherDatas: IWeatherData;
+  WeatherDatas: IWeatherDataRepo;
   //#endregion
   //#region Methods
   Complete(): Promise<void>;

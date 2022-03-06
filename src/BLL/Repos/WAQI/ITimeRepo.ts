@@ -34,7 +34,7 @@ export default interface ITimeRepo {
    * Update an existing Time in the database.
    * @param time {ITime} Time to update.
    */
-  update(time: ITime): Promise<ITime>;
+  update(time: ITime): Promise<void>;
   /**
    * Delete an existing Time from the database.
    * @param id {string} Id of the time to delete.

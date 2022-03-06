@@ -16,6 +16,10 @@ import IPm10 from './Models/Interfaces/WAQI/IPm10';
 import IPm25 from './Models/Interfaces/WAQI/IPm25';
 import ISo2 from './Models/Interfaces/WAQI/ISo2';
 import IT from './Models/Interfaces/WAQI/IT';
+import ITime from './Models/Interfaces/WAQI/ITime';
+import IUvi from './Models/Interfaces/WAQI/IUvi';
+import IWeatherData from './Models/Interfaces/WAQI/IWeatherData';
+import IW from './Models/Interfaces/WAQI/IW';
 
 //#endregion
 /**
@@ -849,13 +853,203 @@ export default class AppManager {
   }
   //#endregion
   //#region Times
+  /**
+   * Gets all Times
+   * @returns {Promise<ITime[]>}
+   */
+  public async getAllTimes(): Promise<ITime[]> {
+    return await this._uow.Times.getAll();
+  }
 
+  /**
+   * Gets Time by id
+   * @param id {string} The id of the Time
+   * @returns {Promise<ITime>}
+   */
+  public async getTimeById(id: string): Promise<ITime> {
+    return await this._uow.Times.getById(id);
+  }
+
+  /**
+   * Adds a new Time
+   * @param time {ITime} The Time to add
+   * @returns {Promise<void>}
+   */
+  public async addTime(time: ITime): Promise<void> {
+    return this._uow.Times.add(time);
+  }
+
+  /**
+   * Updates a Time
+   * @param time {ITime} The Time to update
+   * @returns {Promise<void>}
+   */
+  public async updateTime(time: ITime): Promise<void> {
+    return this._uow.Times.update(time);
+  }
+
+  /**
+   * Deletes a Time
+   * @param id {string} The id of the Time to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteTime(id: string): Promise<void> {
+    return this._uow.Times.delete(id);
+  }
+
+  /**
+   * Checks if a Time exists by id
+   * @param timeId {string} The id of the Time
+   * @returns {Promise<boolean>}
+   */
+  public async timeExists(timeId: string): Promise<boolean> {
+    return this._uow.Times.exists(timeId);
+  }
   //#endregion
   //#region Uvis
+  /**
+   * Gets all Uvis
+   * @returns {Promise<IUvi[]>}
+   */
+  public async getAllUvis(): Promise<IUvi[]> {
+    return await this._uow.Uvis.getAll();
+  }
+
+  /**
+   * Gets Uvi by id
+   * @param id {string} The id of the Uvi
+   * @returns {Promise<IUvi>}
+   */
+  public async getUviById(id: string): Promise<IUvi> {
+    return await this._uow.Uvis.getById(id);
+  }
+
+  /**
+   * Adds a new Uvi
+   * @param uvi {IUvi} The Uvi to add
+   * @returns {Promise<void>}
+   */
+  public async addUvi(uvi: IUvi): Promise<void> {
+    return this._uow.Uvis.add(uvi);
+  }
+
+  /**
+   * Updates a Uvi
+   * @param uvi {IUvi} The Uvi to update
+   * @returns {Promise<void>}
+   */
+  public async updateUvi(uvi: IUvi): Promise<void> {
+    return this._uow.Uvis.update(uvi);
+  }
+
+  /**
+   * Deletes a Uvi
+   * @param id {string} The id of the Uvi to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteUvi(id: string): Promise<void> {
+    return this._uow.Uvis.delete(id);
+  }
+
+  /**
+   * Checks if a Uvi exists by id
+   * @param uviId {string} The id of the Uvi
+   * @returns {Promise<boolean>}
+   */
+  public async uviExists(uviId: string): Promise<boolean> {
+    return this._uow.Uvis.exists(uviId);
+  }
   //#endregion
   //#region Ws
+  /**
+   * Gets all Ws
+   * @returns {Promise<IWs[]>}
+   */
+  public async getAllWs(): Promise<IW[]> {
+    return await this._uow.Ws.getAll();
+  }
+
+  /**
+   * Gets W by id
+   * @param id {string} The id of the W
+   * @returns {Promise<IWs>}
+   */
+  public async getWById(id: string): Promise<IW> {
+    return await this._uow.Ws.getById(id);
+  }
+
+  /**
+   * Adds a new W
+   * @param w {IWs} The W to add
+   * @returns {Promise<void>}
+   */
+  public async addW(w: IW): Promise<void> {
+    return this._uow.Ws.add(w);
+  }
+
+  /**
+   * Updates a W
+   * @param w {IWs} The W to update
+   * @returns {Promise<void>}
+   */
+
+  public async updateW(w: IW): Promise<void> {
+    return this._uow.Ws.update(w);
+  }
   //#endregion
   //#region WeatherDatas
+  /**
+   * Gets all WeatherDatas
+   * @returns {Promise<IWeatherData[]>}
+   */
+  public async getAllWeatherDatas(): Promise<IWeatherData[]> {
+    return await this._uow.WeatherDatas.getAll();
+  }
+
+  /**
+   * Gets WeatherData by id
+   * @param id {string} The id of the WeatherData
+   * @returns {Promise<IWeatherData>}
+   */
+  public async getWeatherDataById(id: string): Promise<IWeatherData> {
+    return await this._uow.WeatherDatas.getById(id);
+  }
+
+  /**
+   * Adds a new WeatherData
+   * @param weatherData {IWeatherData} The WeatherData to add
+   * @returns {Promise<void>}
+   */
+  public async addWeatherData(weatherData: IWeatherData): Promise<void> {
+    return this._uow.WeatherDatas.add(weatherData);
+  }
+
+  /**
+   * Updates a WeatherData
+   * @param weatherData {IWeatherData} The WeatherData to update
+   * @returns {Promise<void>}
+   */
+  public async updateWeatherData(weatherData: IWeatherData): Promise<void> {
+    return this._uow.WeatherDatas.update(weatherData);
+  }
+
+  /**
+   * Deletes a WeatherData
+   * @param id {string} The id of the WeatherData to delete
+   * @returns {Promise<void>}
+   */
+  public async deleteWeatherData(id: string): Promise<void> {
+    return this._uow.WeatherDatas.delete(id);
+  }
+
+  /**
+   * Checks if a WeatherData exists by id
+   * @param weatherDataId {string} The id of the WeatherData
+   * @returns {Promise<boolean>}
+   */
+  public async weatherDataExists(weatherDataId: string): Promise<boolean> {
+    return this._uow.WeatherDatas.exists(weatherDataId);
+  }
   //#endregion
   //#endregion
 }
