@@ -1,0 +1,40 @@
+# Install: sudo install -m 0755 aqmonitor /usr/local/bin/aqmonitor
+#          sudo install -d -m 0750 /etc/aqmonitor
+#          sudo install -m 0600 aqmonitor.env /etc/aqmonitor/aqmonitor.env
+#          sudo cp aqmonitor.service /etc/systemd/system/ && sudo systemctl enable --now aqmonitor
+#
+# NOTE: written for systemd on Raspberry Pi OS; NOT tested in the build sandbox (no systemd there).
+# Check the sandboxing score with: systemd-analyze security aqmonitor
+[Unit]
+Description=AQMonitor air quality API
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/aqmonitor
+EnvironmentFile=/etc/aqmonitor/aqmonitor.env
+Restart=on-failure
+RestartSec=5
+
+# Run as a throw-away unprivileged user; the service needs no files and no root.
+DynamicUser=yes
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+# Only IPv4/IPv6 sockets: it listens on one and calls api.waqi.info over the other.
+RestrictAddressFamilies=AF_INET AF_INET6
+# No privileges are needed (port > 1023). Cap memory so a bug cannot starve the Pi.
+MemoryMax=128M
+
+[Install]
+WantedBy=multi-user.target
