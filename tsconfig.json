@@ -65,6 +65,7 @@
     // "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,               /* Enables experimental support for emitting type metadata for decorators. */
     /* Advanced Options */
+    "types": ["node", "mocha"], /* TS 6 no longer auto-includes @types/*; needed for describe/it/process/console. */
     "skipLibCheck": true, /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },

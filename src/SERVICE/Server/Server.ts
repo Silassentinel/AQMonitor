@@ -11,7 +11,7 @@ import dotenv from 'dotenv';
 import FallBackRoute from '../Routes/Fallback';
 
 // Config
-dotenv.config();
+dotenv.config({quiet: true});
 
 const start = async () => {
   const app = express();
