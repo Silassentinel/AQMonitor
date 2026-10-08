@@ -21,13 +21,6 @@ LAN-only HTTP JSON API for a Raspberry Pi 4; fetches air quality from WAQI.
 | `aqmonitor-rs/deploy/` | `aqmonitor.service` (systemd, untested) and `aqmonitor.env.example` |
 | `aqmonitor-rs/README.md` | API, config, build/deploy, security notes, known gaps |
 
-## Legacy: TypeScript backend (to be removed once the Rust rewrite is accepted)
-
-| Path | Purpose |
-|---|---|
-| `src/`, `test/` | unfinished Express/TypeScript scaffold (crashes on start, empty repositories) |
-| `package.json`, `package-lock.json`, `tsconfig.json`, `.eslintrc.json`, `.prettier*` | its tooling; dependencies updated for security advisories |
-
 ## Root
 
 | Path | Purpose |

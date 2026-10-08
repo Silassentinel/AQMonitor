@@ -1,3 +1,0 @@
-/**
- * Service Layer base exception
- */
