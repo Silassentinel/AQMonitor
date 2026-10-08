@@ -1,3 +1,0 @@
-/**
- * Fallback route exception
- */

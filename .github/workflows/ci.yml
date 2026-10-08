@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly, so new RustSec advisories surface even when nobody pushes (Mondays 05:17 UTC).
+    - cron: "17 5 * * 1"
+
+# Least privilege: jobs only read the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+
+defaults:
+  run:
+    working-directory: aqmonitor-rs
+
+jobs:
+  test:
+    name: fmt, clippy, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: aqmonitor-rs
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets --locked -- -D warnings
+      - run: cargo test --locked
+
+  audit:
+    name: cargo audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-audit
+      - run: cargo audit
+
+  # Cross-builds for the Raspberry Pi 4: 64-bit OS = aarch64, 32-bit OS = armv7.
+  # Linking against glibc 2.31 (the ".2.31" suffix) keeps the binary runnable on Raspberry Pi OS
+  # Bullseye and Bookworm; a plain cross-build links the runner's newer glibc and fails on the Pi.
+  build-pi:
+    name: build ${{ matrix.target }}
+    needs: [test]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [aarch64-unknown-linux-gnu, armv7-unknown-linux-gnueabihf]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: aqmonitor-rs
+          key: ${{ matrix.target }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install zig and cargo-zigbuild
+        run: pip install ziglang
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-zigbuild
+      - name: Build
+        run: cargo zigbuild --release --locked --target ${{ matrix.target }}.2.31
+      - name: Check glibc floor is <= 2.31
+        run: |
+          bin="target/${{ matrix.target }}/release/aqmonitor"
+          max=$(readelf --dyn-syms -W "$bin" | grep -oE 'GLIBC_[0-9]+\.[0-9]+' | sort -Vu | tail -1)
+          echo "highest glibc symbol required: ${max:-none}"
+          if [ -n "$max" ] && [ "$(printf '%s\nGLIBC_2.31\n' "$max" | sort -V | tail -1)" != "GLIBC_2.31" ]; then
+            echo "::error::binary needs $max but Raspberry Pi OS Bullseye ships glibc 2.31"
+            exit 1
+          fi
+      - name: Checksum
+        run: |
+          cd target/${{ matrix.target }}/release
+          sha256sum aqmonitor | tee aqmonitor.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aqmonitor-${{ matrix.target }}
+          path: |
+            aqmonitor-rs/target/${{ matrix.target }}/release/aqmonitor
+            aqmonitor-rs/target/${{ matrix.target }}/release/aqmonitor.sha256
+          if-no-files-found: error
+          retention-days: 14
