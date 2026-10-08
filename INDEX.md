@@ -21,6 +21,19 @@ LAN-only HTTP JSON API for a Raspberry Pi 4; fetches air quality from WAQI.
 | `aqmonitor-rs/deploy/` | `aqmonitor.service` (systemd, untested) and `aqmonitor.env.example` |
 | `aqmonitor-rs/README.md` | API, config, build/deploy, security notes, known gaps |
 
+## Docs
+
+| Path | Purpose |
+|---|---|
+| `docs/BELAQI_SCOPE.md` | scoping (no code) for adding the Belgian BelAQI index: data sources, draft API, tasks, risks, open decisions |
+
+## CI and repository config
+
+| Path | Purpose |
+|---|---|
+| `.github/workflows/ci.yml` | fmt, clippy, tests, `cargo audit` (also weekly), and cross-builds for the Pi (aarch64 and armv7) with a glibc-floor gate |
+| `.github/dependabot.yml` | weekly updates for Cargo and GitHub Actions |
+
 ## Root
 
 | Path | Purpose |

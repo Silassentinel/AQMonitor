@@ -1,0 +1,26 @@
+version: 2
+
+updates:
+  - package-ecosystem: "cargo"
+    directory: "/aqmonitor-rs"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+    groups:
+      rust-dependencies:
+        patterns: ["*"]
+
+  # Keeps the workflow's action versions current (they are pinned by tag, not by commit SHA).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+    groups:
+      actions:
+        patterns: ["*"]

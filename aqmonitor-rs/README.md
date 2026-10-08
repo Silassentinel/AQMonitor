@@ -41,19 +41,33 @@ Categories (`good`, `moderate`, `unhealthy_for_sensitive_groups`, `unhealthy`, `
 
 ## Build and deploy to the Pi 4
 
-The release binary is about 5 MB. Build on your computer, not on the Pi:
+The Pi 4 is ARM, but the binary depends on whether the installed OS is 64-bit or 32-bit. Check on the Pi:
 
 ```sh
-rustup target add aarch64-unknown-linux-gnu
+uname -m     # aarch64 -> 64-bit OS   |   armv7l -> 32-bit OS
+```
+
+| `uname -m` | Rust target |
+|---|---|
+| `aarch64` | `aarch64-unknown-linux-gnu` |
+| `armv7l` | `armv7-unknown-linux-gnueabihf` |
+
+CI builds **both** and uploads them as workflow artifacts (with a SHA-256 file), so you can just
+download the right one. To build yourself (on your computer, not on the Pi):
+
+```sh
+rustup target add aarch64-unknown-linux-gnu        # or armv7-unknown-linux-gnueabihf
 pip install ziglang && cargo install cargo-zigbuild --locked
 cargo zigbuild --release --target aarch64-unknown-linux-gnu.2.31
 scp target/aarch64-unknown-linux-gnu/release/aqmonitor pi@<pi>:
 ```
 
 The `.2.31` suffix matters: a plain cross-build links against your computer's newer glibc and
-then fails on Raspberry Pi OS ("version `GLIBC_2.38' not found"). This target needs a **64-bit**
-Raspberry Pi OS (`uname -m` prints `aarch64`). For 32-bit OS use `armv7-unknown-linux-gnueabihf`
-(not tried). Alternatively run `cargo build --release` on the Pi itself (slow, but always matches).
+then fails on Raspberry Pi OS ("version `GLIBC_2.38' not found"). With it the binary needs glibc
+2.30 or older, which runs on Raspberry Pi OS Bullseye and Bookworm; CI fails the build if that
+ever regresses. Alternatively run `cargo build --release` on the Pi itself (slow, but always matches).
+
+Both targets were built and their glibc requirement checked; **neither was run on real hardware**.
 
 Service files are in `deploy/` (`aqmonitor.service`, `aqmonitor.env.example`).
 
